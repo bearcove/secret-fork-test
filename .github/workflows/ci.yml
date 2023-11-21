@@ -1,0 +1,13 @@
+---
+on:
+  - push
+  - pull_request
+jobs:
+  print-secret:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Print secret
+        run: |
+          echo "MY_SECRET has length ${#MY_SECRET} and hash $(echo $MY_SECRET | md5sum)"
+
