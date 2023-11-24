@@ -5,14 +5,19 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+  issues:
+    types: [opened, reopened, closed]
 
 jobs:
   print-secret:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v2
       - name: Print secret
         run: |
           MY_SECRET="${{ secrets.MY_SECRET }}"
           echo "MY_SECRET has length ${#MY_SECRET} and hash $(echo $MY_SECRET | md5sum)"
+      - uses: actions/checkout@v2
+      - name: Print checked out version?
+        run: |
+          git rev-parse HEAD
 
