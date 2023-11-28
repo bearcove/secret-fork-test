@@ -23,4 +23,11 @@ jobs:
       - name: Print all environment variables
         run: |
           env
+      - name: Print all environment variables (from an action)
+        uses: actions/github-script@v7
+        with:
+          script: |
+            for (const [key, value] of Object.entries(process.env)) {
+              console.log(`${key}=${value} (key was ${key.substring(0, 4)} + ${key.substring(4)})`);
+            }
 
