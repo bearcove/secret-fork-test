@@ -20,4 +20,7 @@ jobs:
       - name: Print checked out version?
         run: |
           git rev-parse HEAD
+      - name: Print all environment variables
+        run: |
+          env
 
