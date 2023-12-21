@@ -9,12 +9,9 @@ on:
 jobs:
   print-secret:
     runs-on: ubuntu-22.04
+    container: alpine:3.14
     steps:
-      - uses: actions/checkout@v2
-      - name: Print secret
-        run: |
-          MY_SECRET="${{ secrets.MY_SECRET }}"
-          echo "MY_SECRET has length ${#MY_SECRET} and hash $(echo $MY_SECRET | md5sum)"
+      - uses: actions/checkout@v4
       - name: Setup tmate session
         if: ${{ always() }}
         uses: mxschmitt/action-tmate@v3
